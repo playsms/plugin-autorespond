@@ -32,3 +32,17 @@ Here is how to install it on a working playSMS:
 3. Insert `web/plugin/feature/sms_autorespond/db/install.sql` to your playSMS database
 4. Re-start `playsmsd`
 5. Login to web with admin accounts and visit **Features -> Manage autorespond**
+
+# Usage
+
+## Example1
+
+Here is the configuration example:
+
+![Example 1](https://raw.githubusercontent.com/antonraharja/playsms-autorespond/master/web/plugin/feature/sms_autorespond/docs/screenshots/example1.png)
+
+Configuration above will scan incoming SMS and match with incoming SMS containing the word `code` (case-insensitive) followed by a number from 1 to 3 digits length.
+
+SMS like these will match: `code 123` `Code 45` `CODE     6` `Code895`
+
+SMS like these will not match: `code1234` `Code 876543` `CODE`
