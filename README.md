@@ -35,7 +35,7 @@ Here is how to install it on a working playSMS:
 
 # Usage
 
-## Example1
+## Example 1
 
 Here is the configuration example:
 
