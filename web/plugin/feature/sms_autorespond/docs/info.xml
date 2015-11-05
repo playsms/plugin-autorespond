@@ -3,8 +3,8 @@
 	<name>sms_autorespond</name>
 	<alias>SMS Autorespond</alias>
 	<description>SMS Autorespond</description>
-	<release>1.0</release>
-	<date>2015-11-03</date>
+	<release>1</release>
+	<date>2015-11-05</date>
 	<author>Anton Raharja</author>
 	<language_file>1</language_file>
 	<sql_file>0</sql_file>
