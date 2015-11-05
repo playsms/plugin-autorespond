@@ -27,8 +27,8 @@ Current version of this plugin should work with playSMS 1.1 and above.
 
 Here is how to install it on a working playSMS:
 
-1. Stop a running `playsmsd`, just make sure to stop it
-2. Copy `web/plugin/feature/sms_autorespond` to your playSMS `plugin/feature` folder
-3. Insert `web/plugin/feature/sms_autorespond/db/install.sql to your playSMS database
+1. Stop `playsmsd`, just make sure to stop it
+2. Copy `web/plugin/feature/sms_autorespond` to the playSMS `plugin/feature` folder
+3. Insert `web/plugin/feature/sms_autorespond/db/install.sql` to your playSMS database
 4. Re-start `playsmsd`
-5. Login to web with admin accounts and visit **Feature -> Manage autorespond**
+5. Login to web with admin accounts and visit **Features -> Manage autorespond**
