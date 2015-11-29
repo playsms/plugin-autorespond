@@ -28,8 +28,8 @@ Current version of this plugin should work with playSMS 1.1 and above.
 Here is how to install it on a working playSMS:
 
 1. Stop `playsmsd`, just make sure to stop it
-2. Copy `web/plugin/feature/sms_autorespond` to the playSMS `plugin/feature` folder
-3. Insert `web/plugin/feature/sms_autorespond/db/install.sql` to your playSMS database
+2. Copy `web/plugin/feature/autorespond` to the playSMS `plugin/feature` folder
+3. Insert `web/plugin/feature/autorespond/db/install.sql` to your playSMS database
 4. Re-start `playsmsd`
 5. Login to web with admin accounts and visit **Features -> Manage autorespond**
 
@@ -39,7 +39,7 @@ Here is how to install it on a working playSMS:
 
 Here is the configuration example:
 
-![Example 1](https://raw.githubusercontent.com/antonraharja/playsms-autorespond/master/web/plugin/feature/sms_autorespond/docs/screenshots/example1.png)
+![Example 1](https://raw.githubusercontent.com/antonraharja/playsms-autorespond/master/web/plugin/feature/autorespond/docs/screenshots/example1.png)
 
 Configuration above will scan incoming SMS and match with incoming SMS containing the word `code` (case-insensitive) followed by a number from 1 to 3 digits length.
 
