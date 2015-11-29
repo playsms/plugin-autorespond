@@ -29,12 +29,12 @@ if ($id = $_REQUEST['id']) {
 }
 
 switch (_OP_) {
-	case "sms_autorespond_list":
+	case "autorespond_list":
 		$content = _dialog() . "
 			<h2>" . _('Manage autorespond') . "</h2>
 			";
 		if (auth_isadmin()) {
-			$content .= _button('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_add', _('Add SMS autorespond'));
+			$content .= _button('index.php?app=main&inc=feature_autorespond&op=autorespond_add', _('Add SMS autorespond'));
 		} else {
 			$query_user_only = "AND uid='" . $user_config['uid'] . "'";
 		}
@@ -66,14 +66,14 @@ switch (_OP_) {
 		while ($db_row = dba_fetch_array($db_result)) {
 			if ($owner = user_uid2username($db_row['uid'])) {
 				if (auth_isadmin()) {
-					$action = "<a href=\"" . _u('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_edit&id=' . $db_row['id']) . "\">" . $icon_config['edit'] . "</a>&nbsp;";
-					$action .= "<a href=\"javascript: ConfirmURL('" . sprintf(_('Are you sure you want to delete SMS autorespond %s ?'), $db_row['service_name']) . "','" . _u('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_del&id=' . $db_row['id']) . "')\">" . $icon_config['delete'] . "</a>";
+					$action = "<a href=\"" . _u('index.php?app=main&inc=feature_autorespond&op=autorespond_edit&id=' . $db_row['id']) . "\">" . $icon_config['edit'] . "</a>&nbsp;";
+					$action .= "<a href=\"javascript: ConfirmURL('" . sprintf(_('Are you sure you want to delete SMS autorespond %s ?'), $db_row['service_name']) . "','" . _u('index.php?app=main&inc=feature_autorespond&op=autorespond_del&id=' . $db_row['id']) . "')\">" . $icon_config['delete'] . "</a>";
 				} else {
 					$action = _hint('Please contact service provider to manage this service');
 				}
 				$sms_receiver = '';
 				if ($db_row['sms_receiver']) {
-					$sms_receiver = "<div name=sms_autorespond_sms_receiver><span class=\"playsms-icon glyphicon glyphicon-inbox\" alt=\"" . _('Receiver number') . "\" title=\"" . _('Receiver number') . "\"></span>" . $db_row['sms_receiver'] . "</div>";
+					$sms_receiver = "<div name=autorespond_sms_receiver><span class=\"playsms-icon glyphicon glyphicon-inbox\" alt=\"" . _('Receiver number') . "\" title=\"" . _('Receiver number') . "\"></span>" . $db_row['sms_receiver'] . "</div>";
 				}
 				$message = $db_row['message'];
 				if (auth_isadmin()) {
@@ -96,12 +96,12 @@ switch (_OP_) {
 			</div>
 			";
 		if (auth_isadmin()) {
-			$content .= _button('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_add', _('Add SMS autorespond'));
+			$content .= _button('index.php?app=main&inc=feature_autorespond&op=autorespond_add', _('Add SMS autorespond'));
 		}
 		_p($content);
 		break;
 	
-	case "sms_autorespond_add":
+	case "autorespond_add":
 		if (!auth_isadmin()) {
 			auth_block();
 		}
@@ -111,7 +111,7 @@ switch (_OP_) {
 		$content .= _dialog() . "
 			<h2>" . _('Manage autorespond') . "</h2>
 			<h3>" . _('Add SMS autorespond') . "</h3>
-			<form action=index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_add_yes method=post>
+			<form action=index.php?app=main&inc=feature_autorespond&op=autorespond_add_yes method=post>
 			" . _CSRF_FORM_ . "
 			<table class=playsms-table>
 				<tbody>
@@ -135,11 +135,11 @@ switch (_OP_) {
 			</table>
 			<p><input type=submit class=button value=\"" . _('Save') . "\">
 			</form>
-			" . _back('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_list');
+			" . _back('index.php?app=main&inc=feature_autorespond&op=autorespond_list');
 		_p($content);
 		break;
 	
-	case "sms_autorespond_add_yes":
+	case "autorespond_add_yes":
 		if (!auth_isadmin()) {
 			auth_block();
 		}
@@ -163,11 +163,11 @@ switch (_OP_) {
 			$_SESSION['dialog']['danger'][] = _('All mandatory fields must be filled');
 		}
 		
-		header("Location: " . _u('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_add'));
+		header("Location: " . _u('index.php?app=main&inc=feature_autorespond&op=autorespond_add'));
 		exit();
 		break;
 	
-	case "sms_autorespond_edit":
+	case "autorespond_edit":
 		if (!auth_isadmin()) {
 			auth_block();
 		}
@@ -189,7 +189,7 @@ switch (_OP_) {
 		$content .= _dialog() . "
 			<h2>" . _('Manage autorespond') . "</h2>
 			<h3>" . _('Edit SMS autorespond') . "</h3>
-			<form action=index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_edit_yes method=post>
+			<form action=index.php?app=main&inc=feature_autorespond&op=autorespond_edit_yes method=post>
 			" . _CSRF_FORM_ . "
 			<input type=hidden name=id value=$id>
 			<table class=playsms-table>
@@ -214,11 +214,11 @@ switch (_OP_) {
 			</table>
 			<p><input type=submit class=button value=\"" . _('Save') . "\">
 			</form>
-			" . _back('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_list');
+			" . _back('index.php?app=main&inc=feature_autorespond&op=autorespond_list');
 		_p($content);
 		break;
 	
-	case "sms_autorespond_edit_yes":
+	case "autorespond_edit_yes":
 		if (!auth_isadmin()) {
 			auth_block();
 		}
@@ -241,11 +241,11 @@ switch (_OP_) {
 		} else {
 			$_SESSION['dialog']['danger'][] = _('All mandatory fields must be filled');
 		}
-		header("Location: " . _u('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_edit&id=' . $id));
+		header("Location: " . _u('index.php?app=main&inc=feature_autorespond&op=autorespond_edit&id=' . $id));
 		exit();
 		break;
 	
-	case "sms_autorespond_del":
+	case "autorespond_del":
 		if (!auth_isadmin()) {
 			auth_block();
 		}
@@ -261,7 +261,7 @@ switch (_OP_) {
 				$_SESSION['dialog']['danger'][] = _('Fail to delete SMS autorespond');
 			}
 		}
-		header("Location: " . _u('index.php?app=main&inc=feature_sms_autorespond&op=sms_autorespond_list'));
+		header("Location: " . _u('index.php?app=main&inc=feature_autorespond&op=autorespond_list'));
 		exit();
 		break;
 }

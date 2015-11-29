@@ -1,2 +1,6 @@
+Version 2
+- change to hook recvsms_intercept_after() to fix missing feature and status
+- change name from sms_autorespond to autorespond
+
 Version 1
 - changelog started
