@@ -18,8 +18,14 @@
  */
 defined('_SECURE_') or die('Forbidden');
 
-function sms_autorespond_hook_recvsms_intercept($sms_datetime, $sms_sender, $message, $sms_receiver, $smsc) {
-	$hooked = false;
+function sms_autorespond_hook_recvsms_intercept_after($sms_datetime, $sms_sender, $message, $sms_receiver, $feature, $status, $uid, $smsc) {
+	$ret = array();
+	$hooked = FALSE;
+	
+	// process only when the previous feature is not 'incoming'
+	if (($feature != 'incoming') && $status) {
+		return $ret;
+	}
 	
 	if ($message) {
 		$db_query = "SELECT * FROM " . _DB_PREF_ . "_featureAutorespond WHERE flag_deleted='0'";
@@ -61,10 +67,11 @@ function sms_autorespond_hook_recvsms_intercept($sms_datetime, $sms_sender, $mes
 		}
 	}
 	
-	$ret = array();
 	if ($c_uid && $hooked) {
-		$ret['modified'] = FALSE;
-		$ret['uid'] = $c_uid;
+		$ret['modified'] = TRUE;
+		$ret['param']['feature'] = 'sms_autorespond';
+		$ret['param']['status'] = 1;
+		$ret['param']['uid'] = $c_uid;
 		$ret['hooked'] = TRUE;
 	}
 	
