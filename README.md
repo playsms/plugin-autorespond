@@ -10,8 +10,8 @@ Info          | Data
 --------------|-----------------------------------------
 Author        | [Anton Raharja](http://antonraharja.com)
 Created       | 151103
-Last update   | 151105
-Version       | 1
+Last update   | 151129
+Version       | 2
 Compatibility | playSMS 1.1 and above
 License       | GPLv3
 
