@@ -15,10 +15,28 @@ Version       | 2
 Compatibility | playSMS 1.1 and above
 License       | GPLv3
 
-Issues to solve:
+# Changelog
+
+## Version 2
+
+   - change to hook recvsms_intercept_after() to fix missing feature and status
+   - change name from sms_autorespond to autorespond
+
+## Version 1
+
+   - changelog started
+
+# Todo
 
 - How to check duplicate regex, 2 entries can have seemingly different regexs but actually matching the same thing
 - If we know how to check duplicates then we can let non-admin accounts to add the service themselves, now for admin only
+
+# Upgrade
+
+If you have installed previous version then you need to remove it before installing this version.
+
+1. Remove `sms_autorespond` files and folder, but do not remove the DB table
+2. Follow below installation steps EXCEPT point 3, the SQL file don't need to be re-inserted
 
 # Installation
 
