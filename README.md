@@ -19,7 +19,6 @@ Issues to solve:
 
 - How to check duplicate regex, 2 entries can have seemingly different regexs but actually matching the same thing
 - If we know how to check duplicates then we can let non-admin accounts to add the service themselves, now for admin only
-- Issues lay on playSMS it self, incoming SMS handeld by this plugin cannot be viewed anywhere, but they're recorded in tblSMSIncoming
 
 # Installation
 
