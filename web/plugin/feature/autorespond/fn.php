@@ -53,7 +53,7 @@ function autorespond_hook_recvsms_intercept_after($sms_datetime, $sms_sender, $m
 					}
 					$smsc = gateway_decide_smsc($smsc, $db_row['smsc']);
 					
-					_log("match found dt:" . $sms_datetime . " s:" . $sms_sender . " r:" . $sms_receiver . " uid:" . $db_row['uid'] . " username:" . $c_username . " service:" . $db_row['service_name'] . " regex:[" . $db_row['regex'] . "] m:[" . $message . "] smsc:" . $smsc, 3, "autorespond");
+					_log("match found dt:" . $sms_datetime . " s:" . $sms_sender . " r:" . $sms_receiver . " uid:" . $c_uid . " username:" . $c_username . " service:[" . $db_row['service_name'] . "] regex:[" . $db_row['regex'] . "] m:[" . $message . "] smsc:" . $smsc, 3, "autorespond");
 					
 					sendsms_helper($c_username, $sms_sender, $c_message, 'text', $unicode, $smsc);
 					
@@ -68,11 +68,12 @@ function autorespond_hook_recvsms_intercept_after($sms_datetime, $sms_sender, $m
 	}
 	
 	if ($c_uid && $hooked) {
+		_log("hooked dt:" . $sms_datetime . " s:" . $sms_sender . " r:" . $sms_receiver . " uid:" . $c_uid . " username:" . $c_username . " service:[" . $db_row['service_name'] . "] regex:[" . $db_row['regex'] . "] m:[" . $message . "] smsc:" . $smsc, 3, "autorespond");
 		$ret['modified'] = TRUE;
 		$ret['param']['feature'] = 'autorespond';
 		$ret['param']['status'] = 1;
 		$ret['param']['uid'] = $c_uid;
-		$ret['hooked'] = TRUE;
+		$ret['hooked'] = $hooked;
 	}
 	
 	return $ret;
