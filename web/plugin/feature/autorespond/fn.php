@@ -72,7 +72,7 @@ function autorespond_hook_recvsms_intercept_after($sms_datetime, $sms_sender, $m
 		$ret['modified'] = TRUE;
 		$ret['param']['feature'] = 'autorespond';
 		$ret['param']['status'] = 1;
-		$ret['param']['uid'] = $c_uid;
+		$ret['uid'] = $c_uid;
 		$ret['hooked'] = $hooked;
 	}
 	
